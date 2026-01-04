@@ -45,20 +45,6 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
     iconRow.add_suffix(iconBox);
     iconGroup.add(iconRow);
 
-    // Icon path label
-    const iconPathLabel = new Gtk.Label({
-      label: settings.get_string("custom-icon-path") || "Default icon",
-      wrap: true,
-      xalign: 0,
-      margin_start: 12,
-      margin_end: 12,
-      margin_top: 6,
-      margin_bottom: 6,
-    });
-    iconPathLabel.add_css_class("dim-label");
-    iconPathLabel.add_css_class("caption");
-    iconGroup.add(iconPathLabel);
-
     // Icon Size
     const sizeRow = new Adw.ActionRow({
       title: "Icon Size",
@@ -83,7 +69,7 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
     // Command Settings Group
     const commandGroup = new Adw.PreferencesGroup({
       title: "Command Settings",
-      description: "Customize the command executed on click",
+      description: "Customize the command executed on click. Leave empty to open app grid (default).",
     });
 
     // Custom Command
@@ -98,7 +84,20 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
       placeholder_text: "Leave empty to open app grid",
     });
 
-    commandRow.add_suffix(commandEntry);
+    const commandClearButton = new Gtk.Button({
+      icon_name: "edit-clear-symbolic",
+      valign: Gtk.Align.CENTER,
+      tooltip_text: "Clear custom command",
+    });
+
+    const commandBox = new Gtk.Box({
+      spacing: 6,
+      valign: Gtk.Align.CENTER,
+    });
+    commandBox.append(commandEntry);
+    commandBox.append(commandClearButton);
+
+    commandRow.add_suffix(commandBox);
     commandGroup.add(commandRow);
 
     // Reset to defaults button
@@ -180,10 +179,9 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
       settings.set_string("custom-icon-path", "");
     });
 
-    // Update label when settings change
-    settings.connect("changed::custom-icon-path", () => {
-      const path = settings.get_string("custom-icon-path");
-      iconPathLabel.set_label(path || "Default icon");
+    // Clear command button
+    commandClearButton.connect("clicked", () => {
+      settings.set_string("custom-command", "");
     });
   }
 }
