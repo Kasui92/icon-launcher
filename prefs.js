@@ -69,13 +69,12 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
     // Command Settings Group
     const commandGroup = new Adw.PreferencesGroup({
       title: "Command Settings",
-      description: "Customize the command executed on click. Leave empty to open app grid (default).",
     });
 
     // Custom Command
     const commandRow = new Adw.ActionRow({
-      title: "Command",
-      subtitle: "Command to execute when clicking the icon",
+      title: "Custom Command",
+      subtitle: "Command to execute when clicking the icon. Leave empty to open app grid (default)",
     });
 
     const commandEntry = new Gtk.Entry({
@@ -100,10 +99,15 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
     commandRow.add_suffix(commandBox);
     commandGroup.add(commandRow);
 
-    // Reset to defaults button
+    // General Settings Group
+    const generalGroup = new Adw.PreferencesGroup({
+      title: "General Settings",
+    });
+
+    // Restore to defaults button
     const resetRow = new Adw.ActionRow({
-      title: "Reset to Defaults",
-      subtitle: "Restore all settings to their default values",
+      title: "Restore to Defaults",
+      subtitle: "Clear all custom settings and restore default values",
     });
 
     const resetButton = new Gtk.Button({
@@ -119,11 +123,12 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
     });
 
     resetRow.add_suffix(resetButton);
-    commandGroup.add(resetRow);
+    generalGroup.add(resetRow);
 
     // Add groups to page
     page.add(iconGroup);
     page.add(commandGroup);
+    page.add(generalGroup);
     window.add(page);
 
     // Bindings
