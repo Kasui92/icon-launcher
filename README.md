@@ -9,7 +9,7 @@ Install from [GNOME Extensions](https://extensions.gnome.org/) or manually:
 ```bash
 git clone https://github.com/Kasui92/icon-launcher.git
 cd icon-launcher
-make local
+make install
 ```
 
 Restart GNOME Shell:
@@ -29,13 +29,13 @@ Open extension preferences to customize:
 ```bash
 make dev        # Install without enabling
 make enable     # Enable extension
-make logs       # Show real-time logs
+make disable    # Disable extension
 ```
 
 ## Commands
 
 ```bash
-make local      # Install and enable
+make install    # Install and enable
 make uninstall  # Remove extension
 make build      # Create .zip package
 make clean      # Remove build files
