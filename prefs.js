@@ -101,70 +101,26 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
     commandRow.add_suffix(commandEntry);
     commandGroup.add(commandRow);
 
-    // Info message box
-    const infoBox = new Gtk.Box({
-      orientation: Gtk.Orientation.VERTICAL,
-      margin_top: 12,
-      margin_bottom: 6,
+    // Reset to defaults button
+    const resetRow = new Adw.ActionRow({
+      title: "Reset to Defaults",
+      subtitle: "Restore all settings to their default values",
     });
 
-    const infoFrame = new Gtk.Frame({
-      css_classes: ["card"],
-    });
-
-    const infoContent = new Gtk.Box({
-      orientation: Gtk.Orientation.HORIZONTAL,
-      spacing: 12,
-      margin_top: 12,
-      margin_bottom: 12,
-      margin_start: 12,
-      margin_end: 12,
-    });
-
-    const infoIcon = new Gtk.Image({
-      icon_name: "dialog-warning-symbolic",
+    const resetButton = new Gtk.Button({
+      label: "Reset",
       valign: Gtk.Align.CENTER,
-    });
-    infoIcon.add_css_class("dim-label");
-
-    const infoTextBox = new Gtk.Box({
-      orientation: Gtk.Orientation.VERTICAL,
-      spacing: 6,
-      hexpand: true,
+      css_classes: ["destructive-action"],
     });
 
-    const infoTitle = new Gtk.Label({
-      label: "Changes require restarting GNOME Shell:",
-      wrap: true,
-      xalign: 0,
+    resetButton.connect("clicked", () => {
+      settings.reset("custom-icon-path");
+      settings.reset("custom-command");
+      settings.reset("icon-size");
     });
-    infoTitle.add_css_class("dim-label");
 
-    const xorgLabel = new Gtk.Label({
-      label: "  • Xorg: Alt+F2 → type 'r' → Enter",
-      wrap: true,
-      xalign: 0,
-    });
-    xorgLabel.add_css_class("dim-label");
-    xorgLabel.add_css_class("caption");
-
-    const waylandLabel = new Gtk.Label({
-      label: "  • Wayland: Logout and login",
-      wrap: true,
-      xalign: 0,
-    });
-    waylandLabel.add_css_class("dim-label");
-    waylandLabel.add_css_class("caption");
-
-    infoTextBox.append(infoTitle);
-    infoTextBox.append(xorgLabel);
-    infoTextBox.append(waylandLabel);
-
-    infoContent.append(infoIcon);
-    infoContent.append(infoTextBox);
-    infoFrame.set_child(infoContent);
-    infoBox.append(infoFrame);
-    commandGroup.add(infoBox);
+    resetRow.add_suffix(resetButton);
+    commandGroup.add(resetRow);
 
     // Add groups to page
     page.add(iconGroup);
