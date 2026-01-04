@@ -25,10 +25,11 @@ Restart GNOME Shell:
 ## Configuration
 
 Open extension preferences to customize:
-- Command to execute
-- Icon (SVG file)
-- Icon size and spacing
-- Position in topbar
+- Command to execute (leave empty to open app grid)
+- Icon (PNG or SVG file)
+- Icon size
+
+By default, clicking the icon opens the GNOME app grid.
 
 ## Development
 
