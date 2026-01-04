@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.icon-launcher" path="/org/gnome/shell/extensions/icon-launcher/">
+    <key name="custom-icon-path" type="s">
+      <default>''</default>
+      <summary>Custom icon path</summary>
+      <description>Path to custom icon file (PNG or SVG). Leave empty to use default icon.</description>
+    </key>
+    <key name="custom-command" type="s">
+      <default>''</default>
+      <summary>Custom command</summary>
+      <description>Command to execute when clicking the icon. Leave empty to open app grid.</description>
+    </key>
+    <key name="icon-size" type="i">
+      <default>14</default>
+      <summary>Icon size</summary>
+      <description>Size of the icon in pixels</description>
+      <range min="8" max="32"/>
+    </key>
+  </schema>
+</schemalist>
