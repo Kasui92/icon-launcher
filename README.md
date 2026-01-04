@@ -2,6 +2,12 @@
 
 Add a customizable icon to the topbar that executes a command when clicked.
 
+<div style="text-align: center">
+
+![Screen Example](/.github/screen.png)
+
+</div>
+
 ## Installation
 
 Install from [GNOME Extensions](https://extensions.gnome.org/) or manually:
