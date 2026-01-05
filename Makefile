@@ -46,7 +46,6 @@ build:
 	@cp $(FILES) build/
 	@mkdir -p build/schemas
 	@cp $(SCHEMA_DIR)/*.xml build/schemas/
-	@glib-compile-schemas build/schemas/
 	@cd build && zip -q -r ../$(UUID).shell-extension.zip *
 	@rm -rf build
 	@echo "✓ Created $(UUID).shell-extension.zip"
