@@ -10,17 +10,13 @@ Add a customizable icon to the topbar that executes a command when clicked.
 
 ## Installation
 
-Install from [GNOME Extensions](https://extensions.gnome.org/) or manually:
-
+- Download from the [Gnome Extension Website](https://extensions.gnome.org/extension/9134/icon-launcher/)
+- Built by yourself: 
 ```bash
 git clone https://github.com/Kasui92/icon-launcher.git
 cd icon-launcher
 make install
 ```
-
-Restart GNOME Shell:
-- **X11**: `Alt+F2` → `r` → Enter
-- **Wayland**: logout/login
 
 ## Configuration
 
