@@ -28,13 +28,13 @@
       </choices>
     </key>
     <key name="margin-left" type="i">
-      <default>0</default>
+      <default>14</default>
       <summary>Left margin</summary>
       <description>Left margin of the icon in pixels</description>
       <range min="0" max="50"/>
     </key>
     <key name="margin-right" type="i">
-      <default>14</default>
+      <default>0</default>
       <summary>Right margin</summary>
       <description>Right margin of the icon in pixels</description>
       <range min="0" max="50"/>
