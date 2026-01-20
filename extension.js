@@ -16,7 +16,7 @@ const TopbarButton = GObject.registerClass(
 
       // Remove all default styling and behavior
       this.remove_style_class_name("panel-button");
-      this.style = "padding: 0; margin: 0 0 0 14px;";
+      this._updateMargins();
       this.reactive = true;
       this.can_focus = false;
       this.track_hover = false;
@@ -49,6 +49,16 @@ const TopbarButton = GObject.registerClass(
       );
       this._settingsChangedIds.push(
         this._settings.connect("changed::icon-size", () => this._updateIcon())
+      );
+      this._settingsChangedIds.push(
+        this._settings.connect("changed::margin-left", () =>
+          this._updateMargins()
+        )
+      );
+      this._settingsChangedIds.push(
+        this._settings.connect("changed::margin-right", () =>
+          this._updateMargins()
+        )
       );
     }
 
@@ -92,6 +102,12 @@ const TopbarButton = GObject.registerClass(
       const gicon = Gio.icon_new_for_string(iconPath);
       this._icon.set_gicon(gicon);
       this._icon.set_icon_size(iconSize);
+    }
+
+    _updateMargins() {
+      const marginLeft = this._settings.get_int("margin-left");
+      const marginRight = this._settings.get_int("margin-right");
+      this.style = `padding: 0; margin: 0 ${marginRight}px 0 ${marginLeft}px;`;
     }
 
     _executeCommand() {
