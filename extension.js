@@ -16,7 +16,7 @@ const TopbarButton = GObject.registerClass(
 
       // Remove all default styling and behavior
       this.remove_style_class_name("panel-button");
-      this.style = "padding: 0; margin: 0 0 0 14px;";
+      this._updateMargins();
       this.reactive = true;
       this.can_focus = false;
       this.track_hover = false;
@@ -49,6 +49,16 @@ const TopbarButton = GObject.registerClass(
       );
       this._settingsChangedIds.push(
         this._settings.connect("changed::icon-size", () => this._updateIcon())
+      );
+      this._settingsChangedIds.push(
+        this._settings.connect("changed::margin-left", () =>
+          this._updateMargins()
+        )
+      );
+      this._settingsChangedIds.push(
+        this._settings.connect("changed::margin-right", () =>
+          this._updateMargins()
+        )
       );
     }
 
@@ -94,6 +104,12 @@ const TopbarButton = GObject.registerClass(
       this._icon.set_icon_size(iconSize);
     }
 
+    _updateMargins() {
+      const marginLeft = this._settings.get_int("margin-left");
+      const marginRight = this._settings.get_int("margin-right");
+      this.style = `padding: 0; margin: 0 ${marginRight}px 0 ${marginLeft}px;`;
+    }
+
     _executeCommand() {
       try {
         const commandString = this._settings.get_string("custom-command");
@@ -135,10 +151,36 @@ export default class IconLauncherExtension extends Extension {
     this._settings = this.getSettings();
     this._button = new TopbarButton(this.path, this._settings);
 
-    Main.panel.addToStatusArea("icon-launcher", this._button, 0, "left");
+    // Get panel position from settings
+    const position = this._settings.get_string("panel-position");
+    Main.panel.addToStatusArea("icon-launcher", this._button, 0, position);
+
+    // Listen for panel position changes
+    this._positionChangedId = this._settings.connect(
+      "changed::panel-position",
+      () => this._updatePanelPosition()
+    );
+  }
+
+  _updatePanelPosition() {
+    if (this._button) {
+      // Remove button from current position
+      this._button.destroy();
+      this._button = null;
+    }
+
+    // Recreate button in new position
+    this._button = new TopbarButton(this.path, this._settings);
+    const position = this._settings.get_string("panel-position");
+    Main.panel.addToStatusArea("icon-launcher", this._button, 0, position);
   }
 
   disable() {
+    if (this._positionChangedId) {
+      this._settings.disconnect(this._positionChangedId);
+      this._positionChangedId = null;
+    }
+
     if (this._button) {
       this._button.destroy();
       this._button = null;
