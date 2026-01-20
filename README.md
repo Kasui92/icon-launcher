@@ -24,8 +24,8 @@ Open extension preferences to customize:
 - Command to execute (leave empty to open app grid)
 - Icon (PNG or SVG file)
 - Icon size
-- Icon position in top panel (left/center/right)
-- Icon margin from left/right
+- Icon position (left/center/right)
+- Icon margin (left/right)
 
 By default, clicking the icon opens the GNOME app grid.
 
