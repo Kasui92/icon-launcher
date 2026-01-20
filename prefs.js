@@ -172,16 +172,38 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
     marginRightRow.add_suffix(marginRightSpinButton);
     generalGroup.add(marginRightRow);
 
-    // Restore to defaults button
-    const resetRow = new Adw.ActionRow({
-      title: "Restore to Defaults",
-      subtitle: "Clear all custom settings and restore default values",
+    // Restore to defaults
+    const resetGroup = new Adw.PreferencesGroup({
+      title: "Reset Preferences",
+      description: "Clear all custom settings and restore default values",
     });
 
-    const resetButton = new Gtk.Button({
+    // Create button with icon and text
+    const resetButtonBox = new Gtk.Box({
+      spacing: 6,
+    });
+    resetButtonBox.set_margin_start(20);
+    resetButtonBox.set_margin_end(20);
+    resetButtonBox.set_margin_top(6);
+    resetButtonBox.set_margin_bottom(6);
+
+    const resetIcon = new Gtk.Image({
+      icon_name: "edit-undo-symbolic",
+    });
+    resetIcon.set_margin_end(6);
+
+    const resetLabel = new Gtk.Label({
       label: "Reset",
+    });
+
+    resetButtonBox.append(resetIcon);
+    resetButtonBox.append(resetLabel);
+
+    const resetButton = new Gtk.Button({
+      halign: Gtk.Align.START,
       valign: Gtk.Align.CENTER,
-      css_classes: ["destructive-action"],
+      child: resetButtonBox,
+      css_classes: ["circular", "destructive-action"],
     });
 
     resetButton.connect("clicked", () => {
@@ -193,13 +215,13 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
       settings.reset("margin-right");
     });
 
-    resetRow.add_suffix(resetButton);
-    generalGroup.add(resetRow);
+    resetGroup.set_header_suffix(resetButton);
 
     // Add groups to page
     page.add(iconGroup);
     page.add(commandGroup);
     page.add(generalGroup);
+    page.add(resetGroup);
     window.add(page);
 
     // Bindings
