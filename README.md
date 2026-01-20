@@ -11,7 +11,7 @@ Add a customizable icon to the topbar that executes a command when clicked.
 ## Installation
 
 - Download from the [Gnome Extension Website](https://extensions.gnome.org/extension/9134/icon-launcher/)
-- Built by yourself: 
+- Built by yourself:
 ```bash
 git clone https://github.com/Kasui92/icon-launcher.git
 cd icon-launcher
@@ -24,6 +24,8 @@ Open extension preferences to customize:
 - Command to execute (leave empty to open app grid)
 - Icon (PNG or SVG file)
 - Icon size
+- Icon position in top panel (left/center/right)
+- Icon margin from left/right
 
 By default, clicking the icon opens the GNOME app grid.
 
