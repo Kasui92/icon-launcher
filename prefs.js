@@ -12,9 +12,9 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
       icon_name: "dialog-information-symbolic",
     });
 
-    // Icon Settings Group
+    // Icon Group
     const iconGroup = new Adw.PreferencesGroup({
-      title: "Icon Settings",
+      title: "Icon",
       description: "Customize the topbar icon appearance",
     });
 
@@ -66,9 +66,9 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
     sizeRow.add_suffix(sizeSpinButton);
     iconGroup.add(sizeRow);
 
-    // Command Settings Group
+    // Command Group
     const commandGroup = new Adw.PreferencesGroup({
-      title: "Command Settings",
+      title: "Command",
     });
 
     // Custom Command
@@ -99,9 +99,9 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
     commandRow.add_suffix(commandBox);
     commandGroup.add(commandRow);
 
-    // General Settings Group
-    const generalGroup = new Adw.PreferencesGroup({
-      title: "General Settings",
+    // Position Group
+    const positionGroup = new Adw.PreferencesGroup({
+      title: "Position",
     });
 
     // Panel Position ComboRow
@@ -128,7 +128,7 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
       settings.set_string("panel-position", positions[selected]);
     });
 
-    generalGroup.add(positionRow);
+    positionGroup.add(positionRow);
 
     // Margin Left
     const marginLeftRow = new Adw.ActionRow({
@@ -149,7 +149,7 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
     });
 
     marginLeftRow.add_suffix(marginLeftSpinButton);
-    generalGroup.add(marginLeftRow);
+    positionGroup.add(marginLeftRow);
 
     // Margin Right
     const marginRightRow = new Adw.ActionRow({
@@ -170,7 +170,7 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
     });
 
     marginRightRow.add_suffix(marginRightSpinButton);
-    generalGroup.add(marginRightRow);
+    positionGroup.add(marginRightRow);
 
     // Restore to defaults
     const resetGroup = new Adw.PreferencesGroup({
@@ -220,7 +220,7 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
     // Add groups to page
     page.add(iconGroup);
     page.add(commandGroup);
-    page.add(generalGroup);
+    page.add(positionGroup);
     page.add(resetGroup);
     window.add(page);
 
