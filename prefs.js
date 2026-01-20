@@ -66,48 +66,6 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
     sizeRow.add_suffix(sizeSpinButton);
     iconGroup.add(sizeRow);
 
-    // Margin Left
-    const marginLeftRow = new Adw.ActionRow({
-      title: "Left Margin",
-      subtitle: "Left margin in pixels (0-50)",
-    });
-
-    const marginLeftAdjustment = new Gtk.Adjustment({
-      lower: 0,
-      upper: 50,
-      step_increment: 1,
-      page_increment: 5,
-    });
-
-    const marginLeftSpinButton = new Gtk.SpinButton({
-      adjustment: marginLeftAdjustment,
-      valign: Gtk.Align.CENTER,
-    });
-
-    marginLeftRow.add_suffix(marginLeftSpinButton);
-    iconGroup.add(marginLeftRow);
-
-    // Margin Right
-    const marginRightRow = new Adw.ActionRow({
-      title: "Right Margin",
-      subtitle: "Right margin in pixels (0-50)",
-    });
-
-    const marginRightAdjustment = new Gtk.Adjustment({
-      lower: 0,
-      upper: 50,
-      step_increment: 1,
-      page_increment: 5,
-    });
-
-    const marginRightSpinButton = new Gtk.SpinButton({
-      adjustment: marginRightAdjustment,
-      valign: Gtk.Align.CENTER,
-    });
-
-    marginRightRow.add_suffix(marginRightSpinButton);
-    iconGroup.add(marginRightRow);
-
     // Command Settings Group
     const commandGroup = new Adw.PreferencesGroup({
       title: "Command Settings",
@@ -171,6 +129,48 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
     });
 
     generalGroup.add(positionRow);
+
+    // Margin Left
+    const marginLeftRow = new Adw.ActionRow({
+      title: "Left Margin",
+      subtitle: "Left margin in pixels (0-50)",
+    });
+
+    const marginLeftAdjustment = new Gtk.Adjustment({
+      lower: 0,
+      upper: 50,
+      step_increment: 1,
+      page_increment: 5,
+    });
+
+    const marginLeftSpinButton = new Gtk.SpinButton({
+      adjustment: marginLeftAdjustment,
+      valign: Gtk.Align.CENTER,
+    });
+
+    marginLeftRow.add_suffix(marginLeftSpinButton);
+    generalGroup.add(marginLeftRow);
+
+    // Margin Right
+    const marginRightRow = new Adw.ActionRow({
+      title: "Right Margin",
+      subtitle: "Right margin in pixels (0-50)",
+    });
+
+    const marginRightAdjustment = new Gtk.Adjustment({
+      lower: 0,
+      upper: 50,
+      step_increment: 1,
+      page_increment: 5,
+    });
+
+    const marginRightSpinButton = new Gtk.SpinButton({
+      adjustment: marginRightAdjustment,
+      valign: Gtk.Align.CENTER,
+    });
+
+    marginRightRow.add_suffix(marginRightSpinButton);
+    generalGroup.add(marginRightRow);
 
     // Restore to defaults button
     const resetRow = new Adw.ActionRow({
