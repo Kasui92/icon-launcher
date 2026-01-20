@@ -172,7 +172,9 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
     marginRightRow.add_suffix(marginRightSpinButton);
     generalGroup.add(marginRightRow);
 
-    // Restore to defaults button
+    // Restore to defaults
+    const resetGroup = new Adw.PreferencesGroup();
+
     const resetRow = new Adw.ActionRow({
       title: "Restore to Defaults",
       subtitle: "Clear all custom settings and restore default values",
@@ -194,12 +196,13 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
     });
 
     resetRow.add_suffix(resetButton);
-    generalGroup.add(resetRow);
+    resetGroup.add(resetRow);
 
     // Add groups to page
     page.add(iconGroup);
     page.add(commandGroup);
     page.add(generalGroup);
+    page.add(resetGroup);
     window.add(page);
 
     // Bindings
