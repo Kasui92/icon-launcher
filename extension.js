@@ -135,10 +135,36 @@ export default class IconLauncherExtension extends Extension {
     this._settings = this.getSettings();
     this._button = new TopbarButton(this.path, this._settings);
 
-    Main.panel.addToStatusArea("icon-launcher", this._button, 0, "left");
+    // Get panel position from settings
+    const position = this._settings.get_string("panel-position");
+    Main.panel.addToStatusArea("icon-launcher", this._button, 0, position);
+
+    // Listen for panel position changes
+    this._positionChangedId = this._settings.connect(
+      "changed::panel-position",
+      () => this._updatePanelPosition()
+    );
+  }
+
+  _updatePanelPosition() {
+    if (this._button) {
+      // Remove button from current position
+      this._button.destroy();
+      this._button = null;
+    }
+
+    // Recreate button in new position
+    this._button = new TopbarButton(this.path, this._settings);
+    const position = this._settings.get_string("panel-position");
+    Main.panel.addToStatusArea("icon-launcher", this._button, 0, position);
   }
 
   disable() {
+    if (this._positionChangedId) {
+      this._settings.disconnect(this._positionChangedId);
+      this._positionChangedId = null;
+    }
+
     if (this._button) {
       this._button.destroy();
       this._button = null;

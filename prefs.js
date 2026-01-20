@@ -104,6 +104,32 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
       title: "General Settings",
     });
 
+    // Panel Position ComboRow
+    const positionRow = new Adw.ComboRow({
+      title: "Panel Position",
+      subtitle: "Choose where the icon appears in the top bar",
+    });
+
+    const positionModel = new Gtk.StringList();
+    positionModel.append("Left");
+    positionModel.append("Center");
+    positionModel.append("Right");
+    positionRow.set_model(positionModel);
+
+    // Map current setting to combo box selection
+    const currentPosition = settings.get_string("panel-position");
+    const positionMap = { left: 0, center: 1, right: 2 };
+    positionRow.set_selected(positionMap[currentPosition] || 0);
+
+    // Handle selection changes
+    positionRow.connect("notify::selected", () => {
+      const selected = positionRow.get_selected();
+      const positions = ["left", "center", "right"];
+      settings.set_string("panel-position", positions[selected]);
+    });
+
+    generalGroup.add(positionRow);
+
     // Restore to defaults button
     const resetRow = new Adw.ActionRow({
       title: "Restore to Defaults",
@@ -120,6 +146,7 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
       settings.reset("custom-icon-path");
       settings.reset("custom-command");
       settings.reset("icon-size");
+      settings.reset("panel-position");
     });
 
     resetRow.add_suffix(resetButton);

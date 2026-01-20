@@ -17,5 +17,15 @@
       <description>Size of the icon in pixels</description>
       <range min="8" max="32"/>
     </key>
+    <key name="panel-position" type="s">
+      <default>'left'</default>
+      <summary>Panel position</summary>
+      <description>Position of the icon in the top bar (left, center, or right)</description>
+      <choices>
+        <choice value='left'/>
+        <choice value='center'/>
+        <choice value='right'/>
+      </choices>
+    </key>
   </schema>
 </schemalist>
