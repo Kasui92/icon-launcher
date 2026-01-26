@@ -151,13 +151,18 @@ export default class IconLauncherExtension extends Extension {
     this._settings = this.getSettings();
     this._button = new TopbarButton(this.path, this._settings);
 
-    // Get panel position from settings
+    // Get panel position and location from settings
     const position = this._settings.get_string("panel-position");
-    Main.panel.addToStatusArea("icon-launcher", this._button, 0, position);
+    const location = this._settings.get_int("location");
+    Main.panel.addToStatusArea("icon-launcher", this._button, location, position);
 
-    // Listen for panel position changes
+    // Listen for panel position and location changes
     this._positionChangedId = this._settings.connect(
       "changed::panel-position",
+      () => this._updatePanelPosition()
+    );
+    this._locationChangedId = this._settings.connect(
+      "changed::location",
       () => this._updatePanelPosition()
     );
   }
@@ -169,16 +174,22 @@ export default class IconLauncherExtension extends Extension {
       this._button = null;
     }
 
-    // Recreate button in new position
+    // Recreate button in new position with new location
     this._button = new TopbarButton(this.path, this._settings);
     const position = this._settings.get_string("panel-position");
-    Main.panel.addToStatusArea("icon-launcher", this._button, 0, position);
+    const location = this._settings.get_int("location");
+    Main.panel.addToStatusArea("icon-launcher", this._button, location, position);
   }
 
   disable() {
     if (this._positionChangedId) {
       this._settings.disconnect(this._positionChangedId);
       this._positionChangedId = null;
+    }
+
+    if (this._locationChangedId) {
+      this._settings.disconnect(this._locationChangedId);
+      this._locationChangedId = null;
     }
 
     if (this._button) {
