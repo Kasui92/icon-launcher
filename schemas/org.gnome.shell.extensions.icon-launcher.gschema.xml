@@ -27,6 +27,12 @@
         <choice value='right'/>
       </choices>
     </key>
+    <key name="location" type="i">
+      <default>0</default>
+      <summary>Location</summary>
+      <description>Adjust the icon location within the selected panel position</description>
+      <range min="0" max="100"/>
+    </key>
     <key name="margin-left" type="i">
       <default>14</default>
       <summary>Left margin</summary>

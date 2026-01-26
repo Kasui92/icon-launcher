@@ -130,6 +130,26 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
 
     positionGroup.add(positionRow);
 
+    // Icon Location
+    const locationRow = new Adw.ActionRow({
+      title: "Location",
+      subtitle: "Adjust the icon location within the selected panel position",
+    });
+
+    const locationAdjustment = new Gtk.Adjustment({
+      lower: 0,
+      upper: 100,
+      step_increment: 1,
+    });
+
+    const locationSpinButton = new Gtk.SpinButton({
+      adjustment: locationAdjustment,
+      valign: Gtk.Align.CENTER,
+    });
+
+    locationRow.add_suffix(locationSpinButton);
+    positionGroup.add(locationRow);
+
     // Margin Left
     const marginLeftRow = new Adw.ActionRow({
       title: "Left Margin",
@@ -211,6 +231,7 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
       settings.reset("custom-command");
       settings.reset("icon-size");
       settings.reset("panel-position");
+      settings.reset("location");
       settings.reset("margin-left");
       settings.reset("margin-right");
     });
@@ -228,6 +249,13 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
     settings.bind(
       "icon-size",
       sizeSpinButton,
+      "value",
+      Gio.SettingsBindFlags.DEFAULT
+    );
+
+    settings.bind(
+      "location",
+      locationSpinButton,
       "value",
       Gio.SettingsBindFlags.DEFAULT
     );
