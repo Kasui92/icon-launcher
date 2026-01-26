@@ -94,6 +94,7 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
     // Position Group
     const positionGroup = new Adw.PreferencesGroup({
       title: "Position",
+      description: "Customize the icon position in the top bar",
     });
 
     // Panel Position ComboRow
