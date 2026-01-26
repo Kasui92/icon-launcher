@@ -25,6 +25,7 @@ Open extension preferences to customize:
 - Icon (PNG or SVG file)
 - Icon size
 - Icon position (left/center/right)
+- Icon location (0-100)
 - Icon margin (left/right)
 
 By default, clicking the icon opens the GNOME app grid.
