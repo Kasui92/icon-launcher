@@ -69,19 +69,16 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
     // Command Group
     const commandGroup = new Adw.PreferencesGroup({
       title: "Command",
+      description: "Command to execute when clicking the icon",
     });
 
     // Custom Command
-    const commandRow = new Adw.ActionRow({
+    const commandRow = new Adw.EntryRow({
       title: "Custom Command",
-      subtitle: "Command to execute when clicking the icon. Leave empty to open app grid (default)",
     });
-
-    const commandEntry = new Gtk.Entry({
-      valign: Gtk.Align.CENTER,
-      hexpand: true,
-      placeholder_text: "Leave empty to open app grid",
-    });
+    commandRow.set_show_apply_button(false);
+    commandRow.set_text("");
+    commandRow.set_enable_emoji_completion(false);
 
     const commandClearButton = new Gtk.Button({
       icon_name: "edit-clear-symbolic",
@@ -89,19 +86,26 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
       tooltip_text: "Clear custom command",
     });
 
-    const commandBox = new Gtk.Box({
-      spacing: 6,
-      valign: Gtk.Align.CENTER,
-    });
-    commandBox.append(commandEntry);
-    commandBox.append(commandClearButton);
-
-    commandRow.add_suffix(commandBox);
+    commandRow.add_suffix(commandClearButton);
     commandGroup.add(commandRow);
+
+    // Add help label
+    const commandHelpLabel = new Gtk.Label({
+      label: "Leave empty to open the application grid by default.",
+      wrap: true,
+      xalign: 0,
+      margin_start: 12,
+      margin_end: 12,
+      margin_top: 6,
+      margin_bottom: 12,
+      css_classes: ["dim-label", "caption"],
+    });
+    commandGroup.add(commandHelpLabel);
 
     // Position Group
     const positionGroup = new Adw.PreferencesGroup({
       title: "Position",
+      description: "Customize the icon position in the top bar",
     });
 
     // Panel Position ComboRow
@@ -276,7 +280,7 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
 
     settings.bind(
       "custom-command",
-      commandEntry,
+      commandRow,
       "text",
       Gio.SettingsBindFlags.DEFAULT
     );
