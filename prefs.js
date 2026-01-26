@@ -69,6 +69,7 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
     // Command Group
     const commandGroup = new Adw.PreferencesGroup({
       title: "Command",
+      description: "Command to execute when clicking the icon",
     });
 
     // Custom Command
@@ -79,9 +80,6 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
     commandRow.set_text("");
     commandRow.set_enable_emoji_completion(false);
 
-    // Add description to the group instead
-    commandGroup.set_description("Command to execute when clicking the icon. Leave empty to open app grid (default)");
-
     const commandClearButton = new Gtk.Button({
       icon_name: "edit-clear-symbolic",
       valign: Gtk.Align.CENTER,
@@ -90,6 +88,19 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
 
     commandRow.add_suffix(commandClearButton);
     commandGroup.add(commandRow);
+
+    // Add help label
+    const commandHelpLabel = new Gtk.Label({
+      label: "Leave empty to open the application grid by default.",
+      wrap: true,
+      xalign: 0,
+      margin_start: 12,
+      margin_end: 12,
+      margin_top: 6,
+      margin_bottom: 12,
+      css_classes: ["dim-label", "caption"],
+    });
+    commandGroup.add(commandHelpLabel);
 
     // Position Group
     const positionGroup = new Adw.PreferencesGroup({
