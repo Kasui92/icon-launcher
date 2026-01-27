@@ -21,7 +21,7 @@ make install
 ## Configuration
 
 Open extension preferences to customize:
-- Command to execute (leave empty to open app grid)
+- Command to execute
 - Icon (PNG or SVG file)
 - Icon size
 - Icon position (left/center/right)
