@@ -2,7 +2,7 @@
   "name": "Icon Launcher",
   "description": "Add a customizable icon to the topbar that executes a command when clicked.",
   "uuid": "icon-launcher@omakasui.org",
-  "shell-version": ["46", "47", "48", "49"],
+  "shell-version": ["46", "47", "48", "49", "50"],
   "url": "https://github.com/Kasui92/icon-launcher",
   "settings-schema": "org.gnome.shell.extensions.icon-launcher"
 }
