@@ -8,6 +8,8 @@ Add a customizable icon to the topbar that executes a command when clicked.
 
 </div>
 
+It can be useful for opening alternative launchers (such as `rofi`, `wofi`, `walker`, etc.) or triggering utility commands. It’s highly customizable.
+
 ## Installation
 
 - Download from the [Gnome Extension Website](https://extensions.gnome.org/extension/9134/icon-launcher/)
