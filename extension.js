@@ -35,6 +35,8 @@ const TopbarButton = GObject.registerClass(
       this._icon.set_style("-st-icon-style: symbolic;");
       this._icon.add_style_class_name("system-status-icon");
 
+      // TODO: button-press-event is deprecated since GNOME 51;
+      // switch to Clutter.ClickGesture (mutter 49+) when dropping shell < 49.
       this.connect("button-press-event", () => {
         this._executeCommand();
         return true;
