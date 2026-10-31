@@ -1,0 +1,150 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Icon Launcher package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Icon Launcher\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-31 23:00+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: extension.js:15
+msgid "Topbar Icon"
+msgstr ""
+
+#: prefs.js:14
+msgid "General"
+msgstr ""
+
+#: prefs.js:20
+msgid "Icon"
+msgstr ""
+
+#: prefs.js:21
+msgid "Customize the topbar icon appearance"
+msgstr ""
+
+#: prefs.js:26
+msgid "Custom Icon"
+msgstr ""
+
+#: prefs.js:27
+msgid "Select a custom PNG or SVG icon (leave empty for default)"
+msgstr ""
+
+#: prefs.js:31
+msgid "Choose Icon"
+msgstr ""
+
+#: prefs.js:38
+msgid "Clear custom icon"
+msgstr ""
+
+#: prefs.js:53
+msgid "Icon Size"
+msgstr ""
+
+#: prefs.js:54
+msgid "Size in pixels (8-32)"
+msgstr ""
+
+#: prefs.js:74
+msgid "Command"
+msgstr ""
+
+#: prefs.js:75
+msgid "Command to execute when clicking the icon"
+msgstr ""
+
+#: prefs.js:80
+msgid "Custom Command"
+msgstr ""
+
+#: prefs.js:89
+msgid "Clear custom command"
+msgstr ""
+
+#: prefs.js:97
+msgid "Leave empty to open the application grid by default."
+msgstr ""
+
+#: prefs.js:110
+msgid "Position"
+msgstr ""
+
+#: prefs.js:111
+msgid "Customize the icon position in the top bar"
+msgstr ""
+
+#: prefs.js:116
+msgid "Panel Position"
+msgstr ""
+
+#: prefs.js:117
+msgid "Choose where the icon appears in the top bar"
+msgstr ""
+
+#: prefs.js:121
+msgid "Left"
+msgstr ""
+
+#: prefs.js:122
+msgid "Center"
+msgstr ""
+
+#: prefs.js:123
+msgid "Right"
+msgstr ""
+
+#: prefs.js:142
+msgid "Location"
+msgstr ""
+
+#: prefs.js:143
+msgid "Adjust the icon location within the selected panel position"
+msgstr ""
+
+#: prefs.js:162
+msgid "Left Margin"
+msgstr ""
+
+#: prefs.js:163
+msgid "Left margin in pixels (0-50)"
+msgstr ""
+
+#: prefs.js:183
+msgid "Right Margin"
+msgstr ""
+
+#: prefs.js:184
+msgid "Right margin in pixels (0-50)"
+msgstr ""
+
+#: prefs.js:204
+msgid "Reset Preferences"
+msgstr ""
+
+#: prefs.js:205
+msgid "Clear all custom settings and restore default values"
+msgstr ""
+
+#: prefs.js:223
+msgid "Reset"
+msgstr ""
+
+#: prefs.js:294
+msgid "Select Icon"
+msgstr ""
+
+#: prefs.js:299
+msgid "Image Files"
+msgstr ""

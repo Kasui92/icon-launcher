@@ -4,12 +4,15 @@ import Gio from "gi://Gio";
 import GLib from "gi://GLib";
 import * as Main from "resource:///org/gnome/shell/ui/main.js";
 import * as PanelMenu from "resource:///org/gnome/shell/ui/panelMenu.js";
-import { Extension } from "resource:///org/gnome/shell/extensions/extension.js";
+import {
+  Extension,
+  gettext as _,
+} from "resource:///org/gnome/shell/extensions/extension.js";
 
 const TopbarButton = GObject.registerClass(
   class TopbarButton extends PanelMenu.Button {
     _init(extensionPath, settings) {
-      super._init(0.0, "Topbar Icon", false);
+      super._init(0.0, _("Topbar Icon"), false);
 
       this._settings = settings;
       this._extensionPath = extensionPath;

@@ -1,38 +1,41 @@
 import Adw from "gi://Adw";
 import Gtk from "gi://Gtk";
 import Gio from "gi://Gio";
-import { ExtensionPreferences } from "resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js";
+import {
+  ExtensionPreferences,
+  gettext as _,
+} from "resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js";
 
 export default class IconLauncherPreferences extends ExtensionPreferences {
   fillPreferencesWindow(window) {
     const settings = this.getSettings();
 
     const page = new Adw.PreferencesPage({
-      title: "General",
+      title: _("General"),
       icon_name: "dialog-information-symbolic",
     });
 
     // Icon Group
     const iconGroup = new Adw.PreferencesGroup({
-      title: "Icon",
-      description: "Customize the topbar icon appearance",
+      title: _("Icon"),
+      description: _("Customize the topbar icon appearance"),
     });
 
     // Custom Icon Path
     const iconRow = new Adw.ActionRow({
-      title: "Custom Icon",
-      subtitle: "Select a custom PNG or SVG icon (leave empty for default)",
+      title: _("Custom Icon"),
+      subtitle: _("Select a custom PNG or SVG icon (leave empty for default)"),
     });
 
     const iconButton = new Gtk.Button({
-      label: "Choose Icon",
+      label: _("Choose Icon"),
       valign: Gtk.Align.CENTER,
     });
 
     const iconClearButton = new Gtk.Button({
       icon_name: "edit-clear-symbolic",
       valign: Gtk.Align.CENTER,
-      tooltip_text: "Clear custom icon",
+      tooltip_text: _("Clear custom icon"),
     });
 
     const iconBox = new Gtk.Box({
@@ -47,8 +50,8 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
 
     // Icon Size
     const sizeRow = new Adw.ActionRow({
-      title: "Icon Size",
-      subtitle: "Size in pixels (8-32)",
+      title: _("Icon Size"),
+      subtitle: _("Size in pixels (8-32)"),
     });
 
     const sizeAdjustment = new Gtk.Adjustment({
@@ -68,13 +71,13 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
 
     // Command Group
     const commandGroup = new Adw.PreferencesGroup({
-      title: "Command",
-      description: "Command to execute when clicking the icon",
+      title: _("Command"),
+      description: _("Command to execute when clicking the icon"),
     });
 
     // Custom Command
     const commandRow = new Adw.EntryRow({
-      title: "Custom Command",
+      title: _("Custom Command"),
     });
     commandRow.set_show_apply_button(false);
     commandRow.set_text("");
@@ -83,7 +86,7 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
     const commandClearButton = new Gtk.Button({
       icon_name: "edit-clear-symbolic",
       valign: Gtk.Align.CENTER,
-      tooltip_text: "Clear custom command",
+      tooltip_text: _("Clear custom command"),
     });
 
     commandRow.add_suffix(commandClearButton);
@@ -91,7 +94,7 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
 
     // Add help label
     const commandHelpLabel = new Gtk.Label({
-      label: "Leave empty to open the application grid by default.",
+      label: _("Leave empty to open the application grid by default."),
       wrap: true,
       xalign: 0,
       margin_start: 12,
@@ -104,20 +107,20 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
 
     // Position Group
     const positionGroup = new Adw.PreferencesGroup({
-      title: "Position",
-      description: "Customize the icon position in the top bar",
+      title: _("Position"),
+      description: _("Customize the icon position in the top bar"),
     });
 
     // Panel Position ComboRow
     const positionRow = new Adw.ComboRow({
-      title: "Panel Position",
-      subtitle: "Choose where the icon appears in the top bar",
+      title: _("Panel Position"),
+      subtitle: _("Choose where the icon appears in the top bar"),
     });
 
     const positionModel = new Gtk.StringList();
-    positionModel.append("Left");
-    positionModel.append("Center");
-    positionModel.append("Right");
+    positionModel.append(_("Left"));
+    positionModel.append(_("Center"));
+    positionModel.append(_("Right"));
     positionRow.set_model(positionModel);
 
     // Map current setting to combo box selection
@@ -136,8 +139,8 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
 
     // Icon Location
     const locationRow = new Adw.ActionRow({
-      title: "Location",
-      subtitle: "Adjust the icon location within the selected panel position",
+      title: _("Location"),
+      subtitle: _("Adjust the icon location within the selected panel position"),
     });
 
     const locationAdjustment = new Gtk.Adjustment({
@@ -156,8 +159,8 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
 
     // Margin Left
     const marginLeftRow = new Adw.ActionRow({
-      title: "Left Margin",
-      subtitle: "Left margin in pixels (0-50)",
+      title: _("Left Margin"),
+      subtitle: _("Left margin in pixels (0-50)"),
     });
 
     const marginLeftAdjustment = new Gtk.Adjustment({
@@ -177,8 +180,8 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
 
     // Margin Right
     const marginRightRow = new Adw.ActionRow({
-      title: "Right Margin",
-      subtitle: "Right margin in pixels (0-50)",
+      title: _("Right Margin"),
+      subtitle: _("Right margin in pixels (0-50)"),
     });
 
     const marginRightAdjustment = new Gtk.Adjustment({
@@ -198,8 +201,8 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
 
     // Restore to defaults
     const resetGroup = new Adw.PreferencesGroup({
-      title: "Reset Preferences",
-      description: "Clear all custom settings and restore default values",
+      title: _("Reset Preferences"),
+      description: _("Clear all custom settings and restore default values"),
     });
 
     // Create button with icon and text
@@ -217,7 +220,7 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
     resetIcon.set_margin_end(6);
 
     const resetLabel = new Gtk.Label({
-      label: "Reset",
+      label: _("Reset"),
     });
 
     resetButtonBox.append(resetIcon);
@@ -288,12 +291,12 @@ export default class IconLauncherPreferences extends ExtensionPreferences {
     // Icon file chooser
     iconButton.connect("clicked", () => {
       const dialog = new Gtk.FileDialog({
-        title: "Select Icon",
+        title: _("Select Icon"),
         modal: true,
       });
 
       const filter = new Gtk.FileFilter();
-      filter.set_name("Image Files");
+      filter.set_name(_("Image Files"));
       filter.add_mime_type("image/svg+xml");
       filter.add_mime_type("image/png");
       filter.add_pattern("*.svg");

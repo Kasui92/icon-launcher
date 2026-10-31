@@ -19,3 +19,7 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.bak
+
+# Compiled translations
+locale/
+*.mo

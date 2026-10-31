@@ -4,5 +4,6 @@
   "uuid": "icon-launcher@omakasui.org",
   "shell-version": ["46", "47", "48", "49", "50", "51"],
   "url": "https://github.com/Kasui92/icon-launcher",
-  "settings-schema": "org.gnome.shell.extensions.icon-launcher"
+  "settings-schema": "org.gnome.shell.extensions.icon-launcher",
+  "gettext-domain": "icon-launcher@omakasui.org"
 }
